@@ -9,8 +9,14 @@ import pandas as pd
 import streamlit as st
 import base64
 
-# Ensure repository root is on sys.path
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# Ensure repository root is on sys.path.
+# NOTE: __file__ is app/main.py, so this must go up TWO directory levels
+# (app/ -> repo root), not one -- otherwise "from rag_agent..." only
+# resolves when something else (an IDE, `python -m`, a stray PYTHONPATH)
+# happens to already have the repo root on sys.path, which is exactly why
+# this worked locally but broke on Streamlit Community Cloud's bare
+# `streamlit run app/main.py` invocation.
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(BASE_DIR)
 
 from rag_agent.agent_orchestrator import ClinicalAgentPipeline
