@@ -1,0 +1,37 @@
+# ---------------------------------------------------------------------------
+# Runtime dependencies for the Streamlit demo app (app/main.py) and for
+# retraining the tabular models (models/train_models.py).
+#
+# This file is what Streamlit Community Cloud installs on deploy. PySpark is
+# intentionally NOT listed here -- it is only needed to regenerate the
+# feature store from raw claims data (see requirements-pipeline.txt) and
+# adds a large, slow install that the deployed demo does not need.
+#
+# CPU-only PyTorch wheel: without this extra index, pip may resolve a much
+# larger CUDA-enabled build, which can blow past Streamlit Community Cloud's
+# build size/time limits. The line below is safe to keep even when
+# installing locally on a Mac.
+# ---------------------------------------------------------------------------
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+streamlit==1.62.0
+pandas==3.0.5
+numpy==2.5.2
+pyarrow==25.0.1
+joblib==1.5.3
+scikit-learn==1.9.0
+xgboost==3.4.1
+torch==2.13.0
+
+# RAG stack
+langchain-core==1.6.0
+langchain-community==0.4.2
+langchain-text-splitters==1.1.2
+langchain-huggingface==1.2.2
+langchain-chroma==1.1.0
+chromadb==1.5.9
+sentence-transformers==6.0.0
+pypdf==6.16.2
+
+# Agentic orchestration
+langgraph==1.2.11

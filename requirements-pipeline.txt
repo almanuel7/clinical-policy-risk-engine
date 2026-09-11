@@ -1,0 +1,12 @@
+# ---------------------------------------------------------------------------
+# Extra dependency needed ONLY to regenerate data/processed/feature_store.parquet
+# from the raw CMS SynPUF claims + CDC SVI files (etl/spark_feature_pipeline.py).
+#
+# Not required to run the Streamlit demo app -- install this in addition to
+# requirements.txt when you want to re-run the ETL pipeline locally.
+#
+#   pip install -r requirements.txt -r requirements-pipeline.txt
+#
+# PySpark also requires a local Java 17 (or 8/11) runtime on PATH.
+# ---------------------------------------------------------------------------
+pyspark==4.2.0
